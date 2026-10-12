@@ -14,11 +14,11 @@ public class DBConnection {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Step 2: Create connection
-            con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/ems_db",
-                "root",
-                "root"
-            );
+            String url = "jdbc:mysql://localhost:3306/ems_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+            String user = System.getenv("DB_USER");
+            String pass = System.getenv("DB_PASSWORD");
+
+            con = DriverManager.getConnection(url, user, pass);
 
             System.out.println("Database Connected Successfully");
 
