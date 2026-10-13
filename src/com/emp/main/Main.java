@@ -18,11 +18,11 @@ public class Main {
         try {
 
             // STEP 1: CREATE DATABASE CONNECTION
-            con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/ems_db",
-                    "root",
-                    "root"
-            );
+        	con = DriverManager.getConnection(
+        	        "jdbc:mysql://localhost:3306/ems_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC",
+        	        System.getenv("DB_USER"),
+        	        System.getenv("DB_PASSWORD")
+        	);
 
             System.out.println("Database connected successfully.");
 
@@ -129,7 +129,20 @@ public class Main {
                     case 3:
 
                         System.out.print("Enter Employee ID to update: ");
-                        int uid = sc.nextInt();
+                        int id = sc.nextInt();
+                        sc.nextLine();
+                        
+                        System.out.print("Enter new name: ");
+                        String name = sc.nextLine();
+                        
+                        System.out.print("Enter new email: ");
+                        String  email= sc.nextLine();
+                        
+                        System.out.print("Enter new phone: ");
+                        String phone = sc.nextLine();
+                       
+                        System.out.print("Enter new department: ");
+                        String department = sc.nextLine();
 
                         System.out.print("Enter new Salary: ");
                         double salary = sc.nextDouble();
@@ -141,7 +154,7 @@ public class Main {
                             break;
                         }
 
-                        dao.updateEmployee(uid, salary);
+                        dao.updateEmployee(id, name, email, phone, department, salary);
                         break;
 
                     // DELETE EMPLOYEE
